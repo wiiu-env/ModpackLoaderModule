@@ -11,13 +11,32 @@ int main(int argc, char **argv) {
     WHBLogCafeInit();
     WHBLogUdpInit();
 
+    // TODO: Any form of error handling...
+
     WHBLogPrintf("Hello from example modpack");
 
     ModpackLoaderStatus error;
     if ((error = ModpackLoader_InitLibrary()) != MODPACK_LOADER_RESULT_SUCCESS) {
-        WHBLogPrintf("Failed to init ModpackLoader. Error %s %d",
-                     ModpackLoader_GetStatusStr(error), error);
+        WHBLogPrintf("Failed to init ModpackLoader. Error %s %d", ModpackLoader_GetStatusStr(error), error);
         OSFatal("Failed to init ModpackLoader.");
+    }
+
+    MPLModpackHandle modpack;
+    if ((error = ModpackLoader_ParseModpackFromCurrentlyRunningWUHB(&modpack)) != MODPACK_LOADER_RESULT_SUCCESS) {
+        WHBLogPrintf("ModpackLoader_ParseModpackFromCurrentlyRunningWUHB failed. Error %s %d", ModpackLoader_GetStatusStr(error), error);
+        OSFatal("Failed to parse current running wuhb");
+    }
+
+    bool launchable = false;
+    if ((error = ModpackLoader_CheckIfLaunchable(modpack, &launchable)) != MODPACK_LOADER_RESULT_SUCCESS || !launchable) {
+        WHBLogPrintf("ModpackLoader_CheckIfLaunchable failed. Error %s %d", ModpackLoader_GetStatusStr(error), error);
+        OSFatal("Modpack not launchable");
+    }
+
+    bool launched = false;
+    if ((error = ModpackLoader_LaunchModpack(modpack, &launched)) != MODPACK_LOADER_RESULT_SUCCESS || !launched) {
+        WHBLogPrintf("ModpackLoader_LaunchModpack failed. Error %s %d", ModpackLoader_GetStatusStr(error), error);
+        OSFatal("Failed to launch modpack");
     }
 
     WHBProcInit();
