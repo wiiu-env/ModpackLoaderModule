@@ -49,7 +49,7 @@ CXXFLAGS += -DDEBUG -DVERBOSE_DEBUG -g
 CFLAGS += -DDEBUG -DVERBOSE_DEBUG -g
 endif
 
-LIBS	:= -lwums -lwut -lmodpackloader
+LIBS	:= -lwums -lwut -lmodpackloader -lcontentredirection -lrpxloader -lwuhbutils -lromfs
 
 #-------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level
