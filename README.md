@@ -1,8 +1,7 @@
 [![CI-Release](https://github.com/wiiu-env/ModpackLoaderModule/actions/workflows/ci.yml/badge.svg)](https://github.com/wiiu-env/ModpackLoaderModule/actions/workflows/ci.yml)
 
-This is a WIP and not finalized. Nothing is documented, nothing is decided, not everything is fully implemented or
-even fully tested. If you need to ask what this is how or to use it this is (currently) nothing for your. Use at your
-own risk. See `modpacks/example` for an example modpack.
+This is a WIP and not finalised. Nothing is documented, nothing is decided, not everything is fully implemented or even fully tested. 
+If you need to ask what this is (or how to use it) this is (currently) nothing for you. Use it at your own risk. See `modpacks/example` for a sample modpack.
 
 ## Usage
 
